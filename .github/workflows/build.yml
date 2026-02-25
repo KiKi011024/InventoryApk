@@ -10,7 +10,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Java (Necesario para Android)
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -27,8 +27,8 @@ jobs:
 
       - name: Build APK
         run: |
-          # El parámetro --yes evita que el proceso se detenga a preguntar
-          flet build apk --verbose --yes
+          # Añadimos --include-packages para que el celular tenga Pandas
+          flet build apk --include-packages flet,pandas,numpy --verbose --yes
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
