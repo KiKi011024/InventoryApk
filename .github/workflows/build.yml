@@ -23,12 +23,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install flet pandas
+          pip install flet pandas numpy
 
       - name: Build APK
         run: |
-          # Añadimos --include-packages para que el celular tenga Pandas
-          flet build apk --include-packages flet,pandas,numpy --verbose --yes
+          # Usamos el comando más simple posible. 
+          # Flet leerá automáticamente el archivo requirements.txt
+          flet build apk --verbose --yes
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
